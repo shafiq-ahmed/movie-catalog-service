@@ -13,6 +13,6 @@ public class MovieCatalogResources {
     @GetMapping("/{userId}")
     public List<CatalogItem> getCatalog(@PathVariable("userId") String userId){
 
-        return Collections.singletonList(new CatalogItem("BladeRunner","Action type film",5));
+        return Collections.singletonList(new CatalogItem("BladeRunner 2049","Action type film",5));
     }
 }
