@@ -24,13 +24,13 @@ public class MovieCatalogResources {
     public List<CatalogItem> getCatalog(@PathVariable String userId){
 
         //the movie ids the user has watched and the user's ratings
-        RatingWrapper ratingListWrapper= restTemplate.getForObject("http://localhost:9097/ratingsdata/users/"+userId, RatingWrapper.class);
+        RatingWrapper ratingListWrapper= restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/"+userId, RatingWrapper.class);
 
         //getting the details of those movies through api call
         return ratingListWrapper.getRatingList().stream().map(rating -> {
             //the url that it's going to get the response from and the class that
             // it's going to map the response to
-            Movie movie = restTemplate.getForObject("http://localhost:9096/movies/"+rating.getMovieId(), Movie.class);
+            Movie movie = restTemplate.getForObject("http://movie-info-service/movies/"+rating.getMovieId(), Movie.class);
 
 
             return new CatalogItem(movie.getName(),"Action type film",rating.getRating());
